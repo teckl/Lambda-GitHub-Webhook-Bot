@@ -7,6 +7,8 @@ GitHub::Webhook::Bot - GitHubのwebhookをいい感じにSlackやChatworkに通�
 
 複数人でのチーム開発において、GitHubのプルリクエスト・レビュー・issue管理などをチャットツールでやり取りしやすくするPerl製WEBアプリケーションです。
 
+詳しくは [PerlでGitHub webhookを受けるbotを作ってみた話](https://qiita.com/teckl/items/c3bff1419e06f2972949) で書いています。
+
 ## 必要な環境
 - Slack or Chatwork
 - Docker
@@ -72,6 +74,10 @@ SLACK_TOKEN=xoxb-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 $ cd p5-GitHub-Webhook-Bot
 $ docker-compose up
 ```
+
+## SEE ALSO
+
+[PerlでGitHub webhookを受けるbotを作ってみた話](https://qiita.com/teckl/items/c3bff1419e06f2972949)
 
 ## License
 MIT
