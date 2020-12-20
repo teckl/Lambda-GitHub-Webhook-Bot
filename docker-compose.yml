@@ -1,0 +1,14 @@
+version: '3'
+volumes:
+  perl-local:
+
+services:
+  webapp:
+    build: .
+    volumes:
+      - .:/opt/webapp
+      - perl-local:/opt/webapp/local
+    env_file:
+      - ".env"
+    ports:
+      - "127.0.0.1:8000:8000"

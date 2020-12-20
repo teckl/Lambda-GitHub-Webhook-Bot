@@ -1,0 +1,6 @@
+default:
+  chatwork : 000000000
+  slack : DEFAULT_CHANNEL_ID
+webhooktest:
+  chatwork : 000000001
+  slack : CXXXXXXX
