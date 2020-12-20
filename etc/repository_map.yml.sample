@@ -3,4 +3,7 @@ default:
   slack : DEFAULT_CHANNEL_ID
 webhooktest:
   chatwork : 000000001
-  slack : CXXXXXXX
+  slack : CXXXXXXX1
+p5-GitHub-Webhook-Bot:
+  chatwork : 000000002
+  slack : CXXXXXXX2
