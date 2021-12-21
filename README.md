@@ -20,7 +20,9 @@ SLACK_TOKENなどの環境変数は、 `.env` の代わりに各自のLambda側�
 
 ## SEE ALSO
 
-[PerlでGitHub webhookを受けるbotを作ってみた話](https://qiita.com/teckl/items/c3bff1419e06f2972949)
+- [PerlでGitHub webhookを受けるbotを作ってみた話](https://qiita.com/teckl/items/c3bff1419e06f2972949)
+
+- [Perlアプリケーション + AWS Lambda + API GatewayでWebhookを受ける](https://qiita.com/teckl/items/f65b5bcd0e15793adbc9)
 
 ## License
 MIT
