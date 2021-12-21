@@ -1,79 +1,22 @@
 
 # NAME
 
-GitHub::Webhook::Bot - GitHubのwebhookをいい感じにSlackやChatworkに通知してくれる君
+AWS Lambda + API GatewayでGitHubのwebhookをいい感じにSlackやChatworkに通知してくれる君
 
 # DESCRIPTION
 
-複数人でのチーム開発において、GitHubのプルリクエスト・レビュー・issue管理などをチャットツールでやり取りしやすくするPerl製WEBアプリケーションです。
+[p5-GitHub-Webhook-Bot](https://github.com/teckl/p5-GitHub-Webhook-Bot) をAWS Lambdaでサーバレスに使えるようにしたサンプルコードです。
 
-詳しくは [PerlでGitHub webhookを受けるbotを作ってみた話](https://qiita.com/teckl/items/c3bff1419e06f2972949) で書いています。
-
-## 必要な環境
-- Slack or Chatwork
-- Docker
-- グローバルIP配下でリクエストを受けられるサーバ環境、もしくは[ngrok](https://ngrok.com/) など
+https://github.com/shogo82148/p5-aws-lambda のカスタムランタイムを利用させていただいております。
 
 ## 初期設定
 
-Slackのみでも使用可能です。Chatworkと共存させることもできます。
+詳しくは[AWS LambdaでCGIを蘇らせる](https://shogo82148.github.io/blog/2018/12/16/run-cgi-in-aws-lambda/) を参照ください。
 
-### `login_id_map.yml`
 
-Slack/ChatworkのアカウントID、チャンネル一覧IDをyamlに設定します。
-チャンネル内で個人宛に `@xxxx` したい場合は個人のIDを入れてください。
+### 環境変数について `.env`
 
-```
-teckl:
-  chatwork: 0000000
-  slack: U0XXXXXXXX
-foo:
-  chatwork: 0000001
-  slack: U0XXXXXXXB
-bar:
-  chatwork: 0000002
-  slack: U0XXXXXXXC
-```
-
-### `repository_map.yml`
-
-リポジトリ単位で通知したいチャンネルを設定します。
-リポジトリ数・チャンネル数が少ない場合は `default` だけでも問題ありません。
-
-```
-default:
-  chatwork : 000000000
-  slack : DEFAULT_CHANNEL_ID
-Plack:
-  slack : C0XXXXXXX1
-p5-GitHub-Webhook-Bot:
-  chatwork : 000000001
-  slack : C0XXXXXXX2
-ojichat.pl:
-  slack : C0XXXXXXX3
-..
-```
-
-### `.env`
-
-Slack/Chatworkのbotのトークンを `.env` ファイルに記述してください。
-
-```
-$ cd p5-GitHub-Webhook-Bot
-$ cat .env
-DEBUG=0
-ENABLE_CHATWORK=0
-ENABLE_SLACK=1
-CHATWORK_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxx
-SLACK_TOKEN=xoxb-xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
-```
-
-## 実行
-
-```
-$ cd p5-GitHub-Webhook-Bot
-$ docker-compose up
-```
+SLACK_TOKENなどの環境変数は、 `.env` の代わりに各自のLambda側の環境変数で設定ください。
 
 ## SEE ALSO
 

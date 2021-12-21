@@ -84,7 +84,6 @@ inc/
 /blib/
 /_eumm/
 /*.gz
-/Makefile
 /Makefile.old
 /MANIFEST.bak
 /pm_to_blib
@@ -111,6 +110,7 @@ tags
 
 # End of https://www.gitignore.io/api/vim,perl,emacs
 /local/
+/extlocal/
 /.env
 /cpanfile.snapshot
 /etc/login_id_map.yml

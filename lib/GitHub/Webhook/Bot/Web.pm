@@ -57,7 +57,7 @@ sub github_payload {
 
 sub ghe_login_to_chatwork_id {
     my ($self, $login) = @_;
-    my $login_id_map_yaml = YAML::Tiny->read(Path::Class::file( $FindBin::Bin, 'etc', 'login_id_map.yml'));
+    my $login_id_map_yaml = YAML::Tiny->read(Path::Class::file( $ENV{'LAMBDA_TASK_ROOT'}, 'etc', 'login_id_map.yml'));
 
     if ($login) {
         return $login_id_map_yaml->[0]->{$login}->{chatwork};
@@ -66,7 +66,7 @@ sub ghe_login_to_chatwork_id {
 
 sub ghe_login_to_slack_id {
     my ($self, $login) = @_;
-    my $login_id_map_yaml = YAML::Tiny->read(Path::Class::file( $FindBin::Bin, 'etc', 'login_id_map.yml'));
+    my $login_id_map_yaml = YAML::Tiny->read(Path::Class::file( $ENV{'LAMBDA_TASK_ROOT'}, 'etc', 'login_id_map.yml'));
 
     if ($login) {
         return $login_id_map_yaml->[0]->{$login}->{slack};
@@ -76,7 +76,7 @@ sub ghe_login_to_slack_id {
 sub repository_name_to_room_id {
     my ($self, $payload, $opt) = @_;
     my $chat_type = $opt && $opt->{slack} ? 'slack' : 'chatwork';
-    my $repository_map_yaml = YAML::Tiny->read(Path::Class::file( $FindBin::Bin, 'etc', 'repository_map.yml'));
+    my $repository_map_yaml = YAML::Tiny->read(Path::Class::file( $ENV{'LAMBDA_TASK_ROOT'}, 'etc', 'repository_map.yml'));
 
     my $repository_name = $payload->{repository}->{name};
 
@@ -182,7 +182,7 @@ sub body_filter_chatwork {
 sub filter_chatwork_emoticons {
     my ($self, $body) = @_;
 
-    my $chatwork_emoticon_list = read_file(Path::Class::file( $FindBin::Bin, 'etc', 'chatwork_emoticon_list.txt'));
+    my $chatwork_emoticon_list = read_file(Path::Class::file( $ENV{'LAMBDA_TASK_ROOT'}, 'etc', 'chatwork_emoticon_list.txt'));
     my @chatwork_emoticon_map = split(/\r\n|\n/, $chatwork_emoticon_list);
     for my $emoticon (@chatwork_emoticon_map) {
         my $quotemeta_emoticon = quotemeta($emoticon);
@@ -602,7 +602,7 @@ sub is_notification_action {
     return 0;
 }
 
-post '/payload' => sub {
+post '/*/payload' => sub {
     my ($self, $c) = @_;
 
     my $event_name = $c->req->header('X-GitHub-Event');
